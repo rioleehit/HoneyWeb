@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 
-var server = app.listen(8081, function () {
+var server = app.listen(80, function () {
   var host = server.address().address;
   var port = server.address().port;
 
@@ -54,9 +54,9 @@ var server = app.listen(8081, function () {
 });
 
 const WebSocket = require('ws');
-var robot = require('robotjs');
+//var robot = require('robotjs');
 //robot.setMouseDelay(0);
-const wss = new WebSocket.Server({ port: 8080 });
+//const wss = new WebSocket.Server({ port: 8080 });
  
  var curPos = {
 	 px:0,
@@ -65,7 +65,7 @@ const wss = new WebSocket.Server({ port: 8080 });
  };
  var prePos={};
  
- 
+ /*
 
  var ActionList={
 	 curActions:[],
@@ -195,16 +195,16 @@ ActionList.baseD=function(){
 ActionList.baseM=function(){
 	//console.log("base move")
 	
-	var mouse = robot.getMousePos();
+	//var mouse = robot.getMousePos();
 	var total = ActionList.totalOffset();
 	var toPointX = mouse.x + total.offsetX;
 	var toPointY = mouse.y + total.offsetY;
 	
-	robot.moveMouse(toPointX, toPointY);
+	//robot.moveMouse(toPointX, toPointY);
 	ActionList.resetPrePos();
 },
 ActionList.baseU=function(){
-	robot.mouseToggle("up");
+	//robot.mouseToggle("up");
 	//console.log("base up")
 	reset();
 }
@@ -222,10 +222,10 @@ function reset(){
 					"t_touch_up"],
 					function(){	 
 	console.log("click du d")
-    robot.mouseToggle();
+    //robot.mouseToggle();
 	ActionList.regCB('u',["t_touch_up"],function(){
 		console.log("click du u")
-		robot.mouseToggle("up");
+		//robot.mouseToggle("up");
 		ActionList.regCB('u',["t_touch_up"],ActionList.baseU);
 	});
  });
@@ -235,7 +235,7 @@ function reset(){
 	console.log("click ddm")
 	ActionList.regCB('m',["t_touch_move"],function(){
 		var total = ActionList.totalOffset();
-		robot.scrollMouse(-total.offsetY/200,-total.offsetX/200);
+		//robot.scrollMouse(-total.offsetY/200,-total.offsetX/200);
 		console.log("scrollMouse posX=%s posy=%s",total.offsetX,total.offsetY)
 	});
 	ActionList.regCB('u',["t_touch_up"],reset);
@@ -253,7 +253,7 @@ function reset(){
 					"t_touch_move"],
 					function(){
 						
-		robot.mouseToggle("down");
+		//robot.mouseToggle("down");
 					});
 					
    ActionList.regCB('ddu',
@@ -263,7 +263,7 @@ function reset(){
 					function(){
 	ActionList.resetPrePos();
 	console.log("click ddu")
-	robot.mouseClick('right');
+	//robot.mouseClick('right');
 	ActionList.regCB('u',["t_touch_up"],reset);
  });
  ActionList.regCB('dud',
@@ -273,7 +273,7 @@ function reset(){
 					function(){ 
 	ActionList.resetPrePos();
 	console.log("dud down")
-	robot.mouseToggle("down");
+	//robot.mouseToggle("down");
 	reset();
  });
  console.log(JSON.stringify(ActionList.registCB))
@@ -289,7 +289,7 @@ function reset(){
 	 
  });
  */
- 
+ /*
  
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
@@ -319,5 +319,5 @@ wss.on('connection', function connection(ws) {
   console.log('Example app ');
   
   
-  
+  */
   
